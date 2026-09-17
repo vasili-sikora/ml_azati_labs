@@ -1,3 +1,5 @@
+from pydoc import cli
+
 import pytest
 
 ##############
@@ -45,7 +47,16 @@ def safe_ctr(clicks: int, shows: int, log: list[str]) -> float:
     :return: CTR as float, or -1.0 on ValueError, or 0.0 on
              ZeroDivisionError
     """
-
+    try:
+        assert clicks >= 0, "Clicks must be non-negative"
+        res = float(ctr(clicks, shows))
+    except ValueError:
+        return -1.0
+    except ZeroDivisionError:
+        return 0.0
+    finally:
+        log.append("done")
+    return res
 
 ##############
 # Test section
@@ -64,3 +75,4 @@ def test_check_ctr(clicks: int, shows: int, expected_result: float) -> None:
     :param expected_result: result to compare with
     :return: None
     """
+    assert(ctr(clicks, shows) == expected_result), "Wrong ctr calculation"

@@ -79,7 +79,7 @@ def get_region_id_if_not_none(
     :param records: records of hit-log
     :return: region ids
     """
-    region_ids = [record["RegionID"] for record in records if record.get("RegionID") is not None]
+    region_ids = [val for record in records if (val := record.get("RegionID")) is not None]
     return region_ids
 
 

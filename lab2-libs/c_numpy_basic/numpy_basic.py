@@ -15,6 +15,8 @@ def construct_array(
     :param col_indices: list of column indices
     :return: matrix slice
     """
+    res = matrix[row_indices, col_indices]
+    return res
 
 
 def detect_identic(
@@ -27,6 +29,8 @@ def detect_identic(
     :param rhs_array: second array
     :return: True if input arrays are equal, False otherwise
     """
+    res = np.array_equal(lhs_array, rhs_array)
+    return res
 
 
 def mean_channel(X: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
@@ -36,6 +40,8 @@ def mean_channel(X: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
     :param X: color image
     :return: array of size 3 with average values
     """
+    res = np.mean(X, axis=(0, 1))
+    return res
 
 
 def get_unique_rows(X: npt.NDArray[np.int_]) -> npt.NDArray[np.int_]:
@@ -44,6 +50,8 @@ def get_unique_rows(X: npt.NDArray[np.int_]) -> npt.NDArray[np.int_]:
     :param X: matrix
     :return: matrix of unique rows
     """
+    res = np.unique(X, axis=0)
+    return res
 
 
 def construct_matrix(
@@ -55,3 +63,5 @@ def construct_matrix(
     :param second_array: second array
     :return: constructed matrix
     """
+    res = np.column_stack((first_array, second_array))
+    return res

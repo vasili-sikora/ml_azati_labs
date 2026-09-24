@@ -8,5 +8,8 @@ def add_zeros(x: npt.NDArray[np.int_]) -> npt.NDArray[np.int_]:
     :param x: array,
     :return: array with zeros inserted
     """
+    if len(x) <= 1:
+        return x
+
     x = np.insert(x, np.arange(1, len(x)), 0)
     return x

@@ -2,7 +2,7 @@ import inspect
 from collections import OrderedDict
 from collections.abc import Callable
 from functools import wraps
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 Function = TypeVar("Function", bound=Callable[..., Any])
 
@@ -14,12 +14,13 @@ def cache(max_size: int) -> Callable[[Function], Function]:
     :param max_size: max amount of unique arguments to store values for
     :return: decorator, which wraps any function passed
     """
-    def decorator(func: Function) -> Callable[..., Any]:
-        cache_dict: OrderedDict[tuple, Any] = OrderedDict()
+
+    def decorator(func: Function) -> Function:
+        cache_dict: OrderedDict[tuple[Any, ...], Any] = OrderedDict()
         sig = inspect.signature(func)
 
         @wraps(func)
-        def wrapper(*args, **kwargs) -> Any:
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
             bound_args = sig.bind(*args, **kwargs)
             bound_args.apply_defaults()
             key = tuple(bound_args.arguments.items())
@@ -34,5 +35,7 @@ def cache(max_size: int) -> Callable[[Function], Function]:
                 cache_dict.popitem(last=False)
 
             return result
-        return wrapper
+
+        return cast(Function, wrapper)
+
     return decorator

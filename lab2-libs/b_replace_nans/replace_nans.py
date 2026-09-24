@@ -10,12 +10,11 @@ def replace_nans(matrix: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
     :return: replaced matrix
     """
     res = matrix.copy()
-
     nan_msk = np.isnan(res)
-    avg = np.nanmean(res)
 
-    if np.isnan(avg):
+    if nan_msk.all():
         return np.zeros_like(res)
 
+    avg = np.nanmean(res)
     res[nan_msk] = avg
     return res

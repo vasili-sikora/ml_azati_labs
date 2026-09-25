@@ -3,7 +3,8 @@ def get_squares(elements: list[int]) -> list[int]:
     :param elements: list with integer values
     :return: list with squared values
     """
-    return [x ** 2 for x in elements]
+    return [x**2 for x in elements]
+
 
 # ====================================================================================================
 
@@ -15,6 +16,7 @@ def get_indices_from_one(elements: list[int]) -> list[int]:
     """
     return [i + 1 for i in range(len(elements))]
 
+
 # ====================================================================================================
 
 
@@ -23,11 +25,47 @@ def get_max_element_index(elements: list[int]) -> int | None:
     :param elements: list with integer values
     :return: index of maximum element if exists, None otherwise
     """
+
     if not elements:
         return None
     return max(range(len(elements)), key=lambda i: elements[i])
 
+
 # ====================================================================================================
+def max[ObjT, KeyT](arr: Iterable[ObjT], key: Callable[[ObjT], KeyT]):
+    it = iter(arr)
+    max = next(it)
+    for i in it:
+        if key(i) > key(max):
+            max = i
+
+    return max
+
+
+def eq[ObjT](arr: Iterable[ObjT], cmp: Callable[[ObjT, Obj], bool]):
+    # < true
+    # >= false
+    res = cmp(a, b)
+    res1 = cmp(b, a)
+    if not res and not res1:
+        return "Не равно"
+
+
+def foo(a, b, cmp):
+    # < -1
+    # == 0
+    # > 1
+    if cmp(a, b) == True:
+        return -1
+    if cmp(b, a) == False:
+        return 0
+    return 1
+
+
+def cmp(a, b, key):
+    # key - ср. балл
+    # return ср балл a < ср балл b
+    return key(a) < key(b)
 
 
 def get_every_second_element(elements: list[int]) -> list[int]:
@@ -86,7 +124,9 @@ def get_sum(elements: list[int]) -> int:
 # ====================================================================================================
 
 
-def get_min_max(elements: list[int], default: int | None) -> tuple[int | None, int | None]:
+def get_min_max(
+    elements: list[int], default: int | None
+) -> tuple[int | None, int | None]:
     """
     :param elements: list with integer values
     :param default: default value to return if elements are empty

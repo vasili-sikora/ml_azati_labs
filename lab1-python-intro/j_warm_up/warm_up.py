@@ -20,6 +20,7 @@ def transpose(matrix: list[list[Any]]) -> list[list[Any]]:
 
     return transposed
 
+
 def uniq(sequence: list[Any]) -> Generator[Any, None, None]:
     """
     :param sequence: arbitrary sequence of comparable elements
@@ -43,6 +44,7 @@ def dict_merge(*dicts: dict[Any, Any]) -> dict[Any, Any]:
         res.update(dct)
     return res
 
+
 def product(lhs: list[int], rhs: list[int]) -> int:
     """
     :param rhs: first factor
@@ -52,13 +54,12 @@ def product(lhs: list[int], rhs: list[int]) -> int:
     return sum(lhs[i] * rhs[i] for i in range(len(lhs)))
 
 
-
 if __name__ == "__main__":
-    test_mtr = [[1,2], [3,4],[5,6]]
+    test_mtr = [[1, 2], [3, 4], [5, 6]]
 
     print(transpose(test_mtr))
 
-    test_seq = [3, 1, 3, 2, 1 , 4]
+    test_seq = [3, 1, 3, 2, 1, 4]
 
     for el in uniq(test_seq):
         print(el)

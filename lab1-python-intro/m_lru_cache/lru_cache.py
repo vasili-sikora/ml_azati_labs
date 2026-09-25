@@ -24,7 +24,6 @@ def cache(max_size: int) -> Callable[[Function], Function]:
             bound_args = sig.bind(*args, **kwargs)
             bound_args.apply_defaults()
             key = tuple(bound_args.arguments.items())
-
             if key in cache_dict:
                 cache_dict.move_to_end(key)
                 return cache_dict[key]
@@ -39,3 +38,7 @@ def cache(max_size: int) -> Callable[[Function], Function]:
         return cast(Function, wrapper)
 
     return decorator
+
+
+if __name__ == "__main__":
+    print((1, 2) + tuple({}.items()))

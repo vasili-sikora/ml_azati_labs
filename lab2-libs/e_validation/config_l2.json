@@ -1,0 +1,16 @@
+{
+  "model": {
+    "model_type": "logistic_regression",
+    "penalty": "l2",
+    "C": 0.5,
+    "l1_ratio": null
+  },
+  "training": {
+    "max_iter": 200,
+    "learning_rate": 0.01,
+    "batch_size": 32,
+    "early_stopping": true
+  },
+  "experiment_name": "LogisticRegression",
+  "random_state": 67
+}

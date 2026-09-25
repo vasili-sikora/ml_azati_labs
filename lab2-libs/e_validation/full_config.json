@@ -1,0 +1,14 @@
+{
+  "model": {
+    "model_type": "logistic_regression",
+    "penalty": "l2",
+    "C": 0.5
+  },
+  "training": {
+    "max_iter": 200,
+    "learning_rate": 0.01,
+    "batch_size": 32
+  },
+  "experiment_name": "Titanic Classification",
+  "random_state": 42
+}

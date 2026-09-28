@@ -1,7 +1,6 @@
 import typing as tp
 
 import pandas as pd
-from numpy.ma.extras import isin
 
 
 def male_age(df: pd.DataFrame) -> float:
@@ -67,6 +66,15 @@ def max_size_group(df: pd.DataFrame, columns: list[str]) -> tp.Iterable[tp.Any]:
     return top_group if isinstance(top_group, tuple) else (top_group,)
 
 
+def _is_lucky(ticket: str) -> bool:
+    s = str(ticket).strip()
+    if not s.isdigit() or len(s) % 2 != 0:
+        return False
+    half = len(s) // 2
+    digits = [int(c) for c in s]
+    return sum(digits[:half]) == sum(digits[half:])
+
+
 def dead_lucky(df: pd.DataFrame) -> float:
     """
     Compute dead ratio of passengers with lucky tickets.
@@ -78,3 +86,7 @@ def dead_lucky(df: pd.DataFrame) -> float:
     :param df: dataframe,
     :return: ratio of dead lucky passengers
     """
+    lucky_passengers = df[df["Ticket"].apply(_is_lucky)]
+    if len(lucky_passengers) == 0:
+        return 0.0
+    return float((lucky_passengers["Survived"] == 0).mean())

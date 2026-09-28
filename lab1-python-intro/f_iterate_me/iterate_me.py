@@ -32,40 +32,40 @@ def get_max_element_index(elements: list[int]) -> int | None:
 
 
 # ====================================================================================================
-def max[ObjT, KeyT](arr: Iterable[ObjT], key: Callable[[ObjT], KeyT]):
-    it = iter(arr)
-    max = next(it)
-    for i in it:
-        if key(i) > key(max):
-            max = i
-
-    return max
-
-
-def eq[ObjT](arr: Iterable[ObjT], cmp: Callable[[ObjT, Obj], bool]):
-    # < true
-    # >= false
-    res = cmp(a, b)
-    res1 = cmp(b, a)
-    if not res and not res1:
-        return "Не равно"
-
-
-def foo(a, b, cmp):
-    # < -1
-    # == 0
-    # > 1
-    if cmp(a, b) == True:
-        return -1
-    if cmp(b, a) == False:
-        return 0
-    return 1
-
-
-def cmp(a, b, key):
-    # key - ср. балл
-    # return ср балл a < ср балл b
-    return key(a) < key(b)
+# def max[ObjT, KeyT](arr: Iterable[ObjT], key: Callable[[ObjT], KeyT]):
+#     it = iter(arr)
+#     max = next(it)
+#     for i in it:
+#         if key(i) > key(max):
+#             max = i
+#
+#     return max
+#
+#
+# def eq[ObjT](arr: Iterable[ObjT], cmp: Callable[[ObjT, Obj], bool]):
+#     # < true
+#     # >= false
+#     res = cmp(a, b)
+#     res1 = cmp(b, a)
+#     if not res and not res1:
+#         return "Не равно"
+#
+#
+# def foo(a, b, cmp):
+#     # < -1
+#     # == 0
+#     # > 1
+#     if cmp(a, b) == True:
+#         return -1
+#     if cmp(b, a) == False:
+#         return 0
+#     return 1
+#
+#
+# def cmp(a, b, key):
+#     # key - ср. балл
+#     # return ср балл a < ср балл b
+#     return key(a) < key(b)
 
 
 def get_every_second_element(elements: list[int]) -> list[int]:

@@ -2,7 +2,7 @@ def wins_correlation() -> str:
     """
     Return column with maximum correlation with number of wins
     """
-
+    return df.corr(numeric_only=True)["nrOfWins"].drop("nrOfWins").idxmax()
 
 def imdb_rating_by_time() -> tuple[str, int]:
     """

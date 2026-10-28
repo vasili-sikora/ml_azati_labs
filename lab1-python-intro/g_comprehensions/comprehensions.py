@@ -11,7 +11,9 @@ def get_unique_page_ids(records: list[tp.Mapping[str, tp.Any]]) -> set[int]:
     return visites
 
 
-def get_unique_page_ids_visited_after_ts(records: list[tp.Mapping[str, tp.Any]], ts: int) -> set[int]:
+def get_unique_page_ids_visited_after_ts(
+    records: list[tp.Mapping[str, tp.Any]], ts: int
+) -> set[int]:
     """
     Get unique web pages visited after some timestamp (not included)
     :param records: records of hit-log
@@ -23,10 +25,8 @@ def get_unique_page_ids_visited_after_ts(records: list[tp.Mapping[str, tp.Any]],
 
 
 def get_unique_user_ids_visited_page_after_ts(
-        records: list[tp.Mapping[str, tp.Any]],
-        ts: int,
-        page_id: int
-        ) -> set[int]:
+    records: list[tp.Mapping[str, tp.Any]], ts: int, page_id: int
+) -> set[int]:
     """
     Get unique users visited given web page after some timestamp (not included)
     :param records: records of hit-log
@@ -34,14 +34,17 @@ def get_unique_user_ids_visited_page_after_ts(
     :param page_id: web page identifier
     :return: Unique users visited given web page after some timestamp
     """
-    visited = {record["UserID"] for record in records if record["EventTime"] > ts and record["PageID"] == page_id}
+    visited = {
+        record["UserID"]
+        for record in records
+        if record["EventTime"] > ts and record["PageID"] == page_id
+    }
     return visited
 
 
 def get_events_by_device_type(
-        records: list[tp.Mapping[str, tp.Any]],
-        device_type: str
-        ) -> list[tp.Mapping[str, tp.Any]]:
+    records: list[tp.Mapping[str, tp.Any]], device_type: str
+) -> list[tp.Mapping[str, tp.Any]]:
     """
     Filter events for given device type with order preservation
     :param records: records of hit-log
@@ -52,13 +55,12 @@ def get_events_by_device_type(
     return filtered
 
 
-
 DEFAULT_REGION_ID = 100500
 
 
 def get_region_ids_with_none_replaces_by_default(
-        records: list[tp.Mapping[str, tp.Any]]
-        ) -> list[int]:
+    records: list[tp.Mapping[str, tp.Any]],
+) -> list[int]:
     """
     Extract visited regions with order preservation. If region not defined, replace it by default region id
     :param records: records of hit-log
@@ -71,15 +73,15 @@ def get_region_ids_with_none_replaces_by_default(
     return region_ids
 
 
-def get_region_id_if_not_none(
-        records: list[tp.Mapping[str, tp.Any]]
-        ) -> list[int]:
+def get_region_id_if_not_none(records: list[tp.Mapping[str, tp.Any]]) -> list[int]:
     """
     Extract visited regions if they are defined with order preservation
     :param records: records of hit-log
     :return: region ids
     """
-    region_ids = [val for record in records if (val := record.get("RegionID")) is not None]
+    region_ids = [
+        val for record in records if (val := record.get("RegionID")) is not None
+    ]
     return region_ids
 
 
@@ -94,9 +96,8 @@ def get_keys_where_value_is_not_none(r: tp.Mapping[str, tp.Any]) -> list[str]:
 
 
 def get_record_with_none_if_key_not_in_keys(
-        r: tp.Mapping[str, tp.Any],
-        keys: set[str]
-        ) -> dict[str, tp.Any]:
+    r: tp.Mapping[str, tp.Any], keys: set[str]
+) -> dict[str, tp.Any]:
     """
     Get record with other keys replaced by None
     :param r: record of hit-log
@@ -108,9 +109,8 @@ def get_record_with_none_if_key_not_in_keys(
 
 
 def get_record_with_key_in_keys(
-        r: tp.Mapping[str, tp.Any],
-        keys: set[str]
-        ) -> dict[str, tp.Any]:
+    r: tp.Mapping[str, tp.Any], keys: set[str]
+) -> dict[str, tp.Any]:
     """
     Filter record by keys
     :param r: record of hit-log
@@ -121,10 +121,7 @@ def get_record_with_key_in_keys(
     return filtered
 
 
-def get_keys_if_key_in_keys(
-        r: tp.Mapping[str, tp.Any],
-        keys: set[str]
-        ) -> set[str]:
+def get_keys_if_key_in_keys(r: tp.Mapping[str, tp.Any], keys: set[str]) -> set[str]:
     """
     Filter keys from record by given keys
     :param r: record of hit-log

@@ -1,3 +1,4 @@
+import time
 import inspect
 from collections import OrderedDict
 from collections.abc import Callable
@@ -40,5 +41,19 @@ def cache(max_size: int) -> Callable[[Function], Function]:
     return decorator
 
 
+@cache(5)
+def heavy_func(*args) -> int:
+    print("Делаем тяжелую работу")
+    time.sleep(3)
+    return a+b
+
+def sum_of_nums(a, b):
+    return a+b
+
+print(sum_of_nums(1,2))
+
+
+
 if __name__ == "__main__":
-    print((1, 2) + tuple({}.items()))
+    print(heavy_func(2, 3))
+    print(heavy_func(2,3))

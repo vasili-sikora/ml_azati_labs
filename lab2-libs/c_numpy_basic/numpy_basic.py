@@ -3,9 +3,9 @@ import numpy.typing as npt
 
 
 def construct_array(
-        matrix: npt.NDArray[np.int_],
-        row_indices: npt.NDArray[np.int_] | list[int],
-        col_indices: npt.NDArray[np.int_] | list[int]
+    matrix: npt.NDArray[np.int_],
+    row_indices: npt.NDArray[np.int_] | list[int],
+    col_indices: npt.NDArray[np.int_] | list[int],
 ) -> npt.NDArray[np.int_]:
     """
     Construct slice of given matrix by indices row_indices and col_indices:
@@ -19,18 +19,16 @@ def construct_array(
     return res
 
 
-def detect_identic(
-        lhs_array: npt.ArrayLike,
-        rhs_array: npt.ArrayLike
-) -> bool:
+def detect_identic(lhs_array: npt.ArrayLike, rhs_array: npt.ArrayLike) -> bool:
     """
     Check whether two arrays are equal or not
     :param lhs_array: first array
     :param rhs_array: second array
     :return: True if input arrays are equal, False otherwise
     """
-    res = np.array_equal(lhs_array, rhs_array)
-    return res
+    # res = np.array_equa(lhs_array, rhs_array)
+    res = np.all(lhs_array == rhs_array)
+    return bool(res)
 
 
 def mean_channel(X: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
@@ -55,7 +53,7 @@ def get_unique_rows(X: npt.NDArray[np.int_]) -> npt.NDArray[np.int_]:
 
 
 def construct_matrix(
-        first_array: npt.NDArray[np.int_], second_array: npt.NDArray[np.int_]
+    first_array: npt.NDArray[np.int_], second_array: npt.NDArray[np.int_]
 ) -> npt.NDArray[np.int_]:
     """
     Construct matrix from pair of arrays

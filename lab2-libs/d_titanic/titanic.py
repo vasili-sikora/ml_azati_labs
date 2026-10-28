@@ -10,11 +10,14 @@ def male_age(df: pd.DataFrame) -> float:
     :return: mean age
     """
     return float(
-        f(
-            df.query(
-                "Survived == 1 and Sex == 'male' and Embarked == 'S' and Fare > 30"
-            )
-        )["Age"].mean()
+        # (df.query("Survived == 1 and Sex == 'male' and Embarked == 'S' and Fare > 30"))[
+        #     "Age"
+        df[
+            (df["Survived"] == 1)
+            & (df["Sex"] == "male")
+            & (df["Embarked"] == "S")
+            & (df["Fare"] > 30)
+        ]["Age"].mean()
     )
 
 

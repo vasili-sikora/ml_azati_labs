@@ -1,7 +1,6 @@
 import io
 import sys
 import time
-from typing import TextIO
 
 
 class Timer:
@@ -23,7 +22,7 @@ class Timer:
 class FileManager:
     """Context manager for file operations that ensures proper cleanup."""
 
-    def __init__(self, filename: str, mode: str = 'r'):
+    def __init__(self, filename: str, mode: str = "r"):
         self.filename = filename
         self.mode = mode
         self.file = None
@@ -107,11 +106,11 @@ if __name__ == "__main__":
     print(f"Elapsed: {timer.elapsed:.2f}s")
 
     # FileManager
-    with FileManager('demo.txt', 'w') as f:
-        f.write('Hello!')
-    with FileManager('demo.txt', 'r') as f:
+    with FileManager("demo.txt", "w") as f:
+        f.write("Hello!")
+    with FileManager("demo.txt", "r") as f:
         print(f.read())
-    os.remove('demo.txt')
+    os.remove("demo.txt")
 
     # OutputCapture
     with OutputCapture() as captured:

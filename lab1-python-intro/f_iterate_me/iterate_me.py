@@ -73,8 +73,6 @@ def get_every_second_element(elements: list[int]) -> list[int]:
     :param elements: list with integer values
     :return: list with each second element of list
     """
-    if len(elements) < 2:
-        return []
     return elements[1::2]
 
 

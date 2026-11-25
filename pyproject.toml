@@ -20,6 +20,7 @@ dependencies = [
     "scikit-learn>=1.6.1",
     "scipy>=1.15.1",
     "seaborn>=0.13.2",
+    "sympy>=1.14.0",
     "testlib",
     # "torch>=2.6.0",
     "tqdm>=4.67.1",
